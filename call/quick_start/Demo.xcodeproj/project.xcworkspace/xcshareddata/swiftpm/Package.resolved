@@ -1,0 +1,24 @@
+{
+  "originHash" : "d522f03b287122c43178f81a11e02fcd04dd779a9dfd15cb1de2d72fc6c9b6a2",
+  "pins" : [
+    {
+      "identity" : "express-video-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/zegolibrary/express-video-ios",
+      "state" : {
+        "revision" : "02144d52ab73183dab3996f9edfdcfa619fa1793",
+        "version" : "3.2.1"
+      }
+    },
+    {
+      "identity" : "toast-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/scalessec/Toast-Swift.git",
+      "state" : {
+        "revision" : "ddccd20d6fb718448d9b179c454c561653fda7d5",
+        "version" : "5.1.1"
+      }
+    }
+  ],
+  "version" : 3
+}
