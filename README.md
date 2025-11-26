@@ -1,4 +1,22 @@
-# zegocloud_sdk_demos
+# banuba_sdk_zegocloud_sdk_ios
+
+This sample was forked from an official Zegocloud Demo and demostrates 
+integration with [Banuba](https://www.banuba.com/facear-sdk/face-filters). 
+All the cahanges was made to [call/quick_start](call/quick_start) project. 
+
+
+### Banuba Token
+
+Before you commit to a license, you are free to test all the features of the SDK 
+for free. To start it, 
+[send us a message](https://www.banuba.com/facear-sdk/face-filters#form).  
+We will get back to you with the trial token. You can store the token within the 
+app.  
+
+Feel free to [contact us](https://docs.banuba.com/far-sdk/support) if you have 
+any questions.
+
+------------------------
 
 
 [![](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/EtNRATttyp)

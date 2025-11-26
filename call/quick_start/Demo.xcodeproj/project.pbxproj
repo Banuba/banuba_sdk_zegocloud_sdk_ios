@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		131B20442ED6D95E00B9D6EF /* effects in Resources */ = {isa = PBXBuildFile; fileRef = 131B20432ED6D90E00B9D6EF /* effects */; };
+		13FB5C2B2ED5F134005DD49E /* BNBFaceTracker in Frameworks */ = {isa = PBXBuildFile; productRef = 13FB5C2A2ED5F134005DD49E /* BNBFaceTracker */; };
+		13FB5C2E2ED5F168005DD49E /* BNBSdkApi in Frameworks */ = {isa = PBXBuildFile; productRef = 13FB5C2D2ED5F168005DD49E /* BNBSdkApi */; };
 		86117B9D2A95B55100653A88 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 86117B9C2A95B55100653A88 /* Toast */; };
 		861D13B92995F2F500E14E4E /* ZegoExpressEngine in Frameworks */ = {isa = PBXBuildFile; productRef = 861D13B82995F2F500E14E4E /* ZegoExpressEngine */; };
 		861FB0452995E0FA00CB5320 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861FB0442995E0FA00CB5320 /* AppDelegate.swift */; };
@@ -18,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		131B20432ED6D90E00B9D6EF /* effects */ = {isa = PBXFileReference; lastKnownFileType = folder; path = effects; sourceTree = "<group>"; };
 		861FB0412995E0FA00CB5320 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		861FB0442995E0FA00CB5320 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		861FB0462995E0FA00CB5320 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -33,8 +37,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13FB5C2B2ED5F134005DD49E /* BNBFaceTracker in Frameworks */,
 				86117B9D2A95B55100653A88 /* Toast in Frameworks */,
 				861D13B92995F2F500E14E4E /* ZegoExpressEngine in Frameworks */,
+				13FB5C2E2ED5F168005DD49E /* BNBSdkApi in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +66,7 @@
 		861FB0432995E0FA00CB5320 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				131B20432ED6D90E00B9D6EF /* effects */,
 				861FB0442995E0FA00CB5320 /* AppDelegate.swift */,
 				861FB0462995E0FA00CB5320 /* SceneDelegate.swift */,
 				861FB0482995E0FA00CB5320 /* ViewController.swift */,
@@ -90,6 +97,8 @@
 			packageProductDependencies = (
 				861D13B82995F2F500E14E4E /* ZegoExpressEngine */,
 				86117B9C2A95B55100653A88 /* Toast */,
+				13FB5C2A2ED5F134005DD49E /* BNBFaceTracker */,
+				13FB5C2D2ED5F168005DD49E /* BNBSdkApi */,
 			);
 			productName = Demo;
 			productReference = 861FB0412995E0FA00CB5320 /* Demo.app */;
@@ -122,6 +131,8 @@
 			packageReferences = (
 				861D13B72995F2F500E14E4E /* XCRemoteSwiftPackageReference "express-video-ios" */,
 				86117B9B2A95B55100653A88 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				13FB5C292ED5F134005DD49E /* XCRemoteSwiftPackageReference "BNBFaceTracker" */,
+				13FB5C2C2ED5F168005DD49E /* XCRemoteSwiftPackageReference "BNBSdkApi" */,
 			);
 			productRefGroup = 861FB0422995E0FA00CB5320 /* Products */;
 			projectDirPath = "";
@@ -140,6 +151,7 @@
 				861FB0512995E0FC00CB5320 /* LaunchScreen.storyboard in Resources */,
 				861FB04E2995E0FC00CB5320 /* Assets.xcassets in Resources */,
 				861FB04C2995E0FA00CB5320 /* Main.storyboard in Resources */,
+				131B20442ED6D95E00B9D6EF /* effects in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,6 +388,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		13FB5C292ED5F134005DD49E /* XCRemoteSwiftPackageReference "BNBFaceTracker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sdk-banuba/BNBFaceTracker";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 1.17.6;
+			};
+		};
+		13FB5C2C2ED5F168005DD49E /* XCRemoteSwiftPackageReference "BNBSdkApi" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sdk-banuba/BNBSdkApi";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 1.17.6;
+			};
+		};
 		86117B9B2A95B55100653A88 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/scalessec/Toast-Swift.git";
@@ -395,6 +423,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		13FB5C2A2ED5F134005DD49E /* BNBFaceTracker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 13FB5C292ED5F134005DD49E /* XCRemoteSwiftPackageReference "BNBFaceTracker" */;
+			productName = BNBFaceTracker;
+		};
+		13FB5C2D2ED5F168005DD49E /* BNBSdkApi */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 13FB5C2C2ED5F168005DD49E /* XCRemoteSwiftPackageReference "BNBSdkApi" */;
+			productName = BNBSdkApi;
+		};
 		86117B9C2A95B55100653A88 /* Toast */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 86117B9B2A95B55100653A88 /* XCRemoteSwiftPackageReference "Toast-Swift" */;

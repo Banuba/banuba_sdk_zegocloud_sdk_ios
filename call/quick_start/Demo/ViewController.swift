@@ -5,11 +5,16 @@
 import UIKit
 import ZegoExpressEngine
 import Toast
+import BNBSdkApi
 
 // Get your AppID and AppSign from ZEGOCLOUD Console
 // [My Projects -> AppID] : https://console.zegocloud.com/project
 let appID : UInt32 =
 let appSign: String = 
+
+// To start send us a message. We will get back to you with the trial token.
+// https://www.banuba.com/facear-sdk/face-filters#form
+let banubaClientToken: String = 
 
 class ViewController: UIViewController {
     
@@ -21,11 +26,16 @@ class ViewController: UIViewController {
     var callButton: UIButton!
     
     var localUserID = "user_" + String(Int.random(in: 1...100))
+    
+    private lazy var player = Player()
+    private lazy var stream = BNBSdkApi.Stream()
+    private var lastPixelBuffer: CVPixelBuffer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         createEngine()
+        initBanubaSdk()
         initViews()
     }
 
@@ -45,6 +55,36 @@ class ViewController: UIViewController {
         profile.scenario = .default
         // Create a ZegoExpressEngine instance and set eventHandler to [self].
         ZegoExpressEngine.createEngine(with: profile, eventHandler: self)
+        
+        let processConfig = ZegoCustomVideoProcessConfig()
+        // Select the [CVPixelBuffer] as video frame data type.
+        processConfig.bufferType = .cvPixelBuffer
+
+        // Enable the custom video pre-processing.
+        ZegoExpressEngine.shared().enableCustomVideoProcessing(true, config: processConfig)
+
+        // Set [self] as the event handler object of the custom video pre-processing callback.
+        ZegoExpressEngine.shared().setCustomVideoProcessHandler(self)
+    }
+    
+    private func initBanubaSdk() {
+        BanubaSdkManager.initialize(
+            // This is array of paths where to seach for resources. E.g. for effects
+            resourcePath: [
+                Bundle.main.bundlePath + "/effects",
+                Bundle.main.bundlePath // also seacrh dirrectly in app bundle
+            ],
+            clientTokenString: banubaClientToken
+        )
+        
+        let pixelBufferOutput = PixelBuffer(onPresent: { buffer in
+            guard let buffer = buffer else { return }
+            self.lastPixelBuffer = buffer
+        })
+  
+        // Use manual render mode to control when pixel buffer should be presented
+        player.renderMode = .manual
+        player.use(input: stream, outputs: [pixelBufferOutput])
     }
 
     private func destroyEngine() {
@@ -169,3 +209,37 @@ extension ViewController : ZegoEventHandler {
 
 }
 
+extension ViewController:  ZegoCustomVideoProcessHandler {
+    func onCapturedUnprocessedCVPixelBuffer(_ buffer: CVPixelBuffer,
+        timestamp: CMTime,
+        channel: ZegoPublishChannel) {
+        
+        // Push input pixel buffer for processing
+        stream.push(pixelBuffer: buffer)
+        
+        // Process input pixel buffer and present result manually
+        _ = player.render()
+        
+        if lastPixelBuffer == nil {
+            lastPixelBuffer = buffer
+        }
+        
+        // `onCapturedUnprocessedCVPixelBuffer` will block until
+        // `sendCustomVideoProcessedCVPixelBuffer` is called. So, do it here.
+        // In manual banuba mode it will be the same frame.
+        ZegoExpressEngine.shared().sendCustomVideoProcessedCVPixelBuffer(lastPixelBuffer!,
+            timestamp: timestamp)
+        
+    }
+    
+    func onStart(_ channel: ZegoPublishChannel) {
+        player.play()
+        _ = player.load(effect: "Nerd2", sync: true)
+    }
+    
+    func onStop(_ channel: ZegoPublishChannel) {
+        // Empty effect will unload resources
+        _ = player.load(effect: "", sync: true)
+        player.stop()
+    }
+}
